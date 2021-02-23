@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Demo-finance-msaccess": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\Xsert\\source\\repos\\Demo-finance-msaccess\\Demo-finance-msaccess"
+    }
+  }
+}
