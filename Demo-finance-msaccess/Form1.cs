@@ -40,7 +40,7 @@ namespace Demo_finance_msaccess
             db.SaveChanges();
 
             var newAgent = db.Agents.FirstOrDefault();
-            var client = new Client() { Name = "Xsert Emina", Address = "P16, Poblacion, Valencia City", ContractNumber = "1412", Agent = newAgent };
+            var client = new Client() { Name = "Xsert Emina", Address = "P16, Poblacion, Valencia City", ContractNumber = "1412", Agent = agent };
             db.Clients.Add(client);
             db.SaveChanges();
 
@@ -60,15 +60,15 @@ namespace Demo_finance_msaccess
             * console log the rows
             * then let's add them to our data grid view
             */
-            foreach (var p in db.Clients)
+            foreach (var c in db.Clients.Include(a => a.Agent))
             {
                 dgvDataTable.Rows.Add(new object[] {
-                    p.ClientId,
-                    p.Name,
-                    p.Address,
-                    p.ContractNumber,
-                    p.Agent.AgentId,
-                    p.Agent.Name
+                    c.ClientId,
+                    c.Name,
+                    c.Address,
+                    c.ContractNumber,
+                    (string)(c.Agent != null ?c.Agent.AgentId.ToString():""),
+                    (string)(c.Agent != null ?c.Agent.Name:""),
                 });
             }
         }
